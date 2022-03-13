@@ -7,7 +7,8 @@ module.exports = (req, res)=>{
         async (error)=>{
             await BlogPost.create({
                 ...req.body,
-                image: "/img" + image.name
+                image: "/img" + image.name,
+                userid: req.session.userId
             }, (error, user)=>{
                 if(error){
                     const validationErrors=Object.keys(error.errors).map( key => error.errors[key].message)

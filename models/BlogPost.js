@@ -10,8 +10,9 @@ const BlogPostSchema = new Schema({
         type: String,
         required: [true,"please enter the main message"],
     },
-    username: {
-        type: String,
+    userid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
         required: [true,"please enter the username"],
     },
     datePosted:{

@@ -17,6 +17,7 @@ module.exports = (req, res) =>{
 
         }
    return res.render("create", {
+    createPost: true,
        errors: flash("validationerrors"),
        title: title,
        username: username,
