@@ -1,8 +1,9 @@
 const bcrypt = require("bcrypt")
 const User = require("../models/User")
-
+const flash = require("connect-flash")
 module.exports = (req, res) =>{
     const {username, password} = req.body
+
     User.findOne({username:username}, (error, user)=>{
         if(user){
             bcrypt.compare(password, user.password, (error, same)=>{
@@ -11,12 +12,21 @@ module.exports = (req, res) =>{
                     res.redirect("/")
                 }
                 else{
-                    res.redirect("/auth/login")
+                    
+                    res.redirect("/auth/login",{
+                        errors: flash("validationErrors"),
+                        username: username,
+                        password: password
+                    })
                 }
             })
         }
         else{
-            res.redirect("/auth/login")
+            res.redirect("/auth/login",{
+                errors: flash("validationErrors"),
+                username: username,
+                password: password
+            })
         }
     })
 }

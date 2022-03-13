@@ -21,6 +21,8 @@ const authmiddleware = require("./middleware/authMiddleware");
 const authMiddleware = require("./middleware/authMiddleware");
 const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware")
 const logoutController = require("./controllers/logout")
+const flash = require("connect-flash")
+
 mongoose.connect("mongodb://localhost/my_database", {useNewUrlParser:true})
 const app = express()
 app.set("view engine","ejs")
@@ -37,7 +39,7 @@ app.use("*", (req, res, next) => {
 app.listen(3000, ()=>{
     console.log("app listening on port 3000")
 })
-
+app.use(flash())
 /*app.get("/",(req, res)=>{
     res.sendFile(path.resolve(__dirname, "pages/index.html"))
 })

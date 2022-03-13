@@ -10,7 +10,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="page-heading">
                             <h1>Create New Post</h1>
-                            <span class="subheading">Have questions? I have answers.</span>
+                            <span class="subheading">post whatever you like to!</span>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,13 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+                        <% if(errors !=null && errors.length>0){ %>
+                            <ul class ="list-group">
+                                <% for (var i=0; i < errors.length; i++){ %>
+                                    <li class="list-group-item list-group-item-danger"><p><%= errors[i] %></p></li>
+                                    <% } %>
+                        </ul>
+                        <% } %>
                         <div class="my-5">
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
